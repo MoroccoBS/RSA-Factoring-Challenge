@@ -1,6 +1,15 @@
 #!/usr/bin/python3
-import sys
 import math
+import sys
+
+
+def factorize_file(file_path):
+    with open(file_path, "r") as file:
+        for line in file:
+            number = int(line.strip())
+            factors = factorize(number)
+            factorization = "{}={}".format(number, "*".join(map(str, factors)))
+            print(factorization)
 
 
 def factorize(number):
@@ -13,23 +22,5 @@ def factorize(number):
     return factors
 
 
-# Check if the user has provided the file path as an argument
-if len(sys.argv) < 2:
-    print("Please provide a file path as an argument.")
-    sys.exit(1)
-
-# Get the file path from the command-line argument
-file_path = sys.argv[1]
-
-try:
-    # Open the file and read its contents
-    with open(file_path, "r") as file:
-        for i in file:
-            line = i.strip()
-            factors = factorize(int(line))
-            print(
-                f"{line}={factors[0] if len(factors) == 1 else factors[1]}*{factors[0]}"
-            )
-except FileNotFoundError:
-    print("File not found.")
-    sys.exit(1)
+if __name__ == "__main__":
+    factorize_file(sys.argv[1])
