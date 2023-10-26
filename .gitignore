@@ -1,3 +1,6 @@
 /tests
 .vscode
 test.py
+/c
+/py
+/rust
